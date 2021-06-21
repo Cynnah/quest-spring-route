@@ -14,12 +14,13 @@ public class DoctorController {
 	
     @GetMapping("/doctor/{number}")
     @ResponseBody
-    public String doctor(@PathVariable int number, String name) {
+    public Doctor doctor(@PathVariable int number, String name) {
     	
     	if (number >= 1 && number <= 12) {
     		throw new ResponseStatusException(HttpStatus.SEE_OTHER, "Error 303, See other");
     	} else if (number == 13) {
-    		return doctor(number= 13, name= "Jodie Whittaker");
+    		Doctor Jodie = new Doctor(13, "Jodie Whittaker");
+    		return Jodie;
     	}else if (number > 12) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error 404, Impossible de récupérer l'incarnation" + number +".");
         }
